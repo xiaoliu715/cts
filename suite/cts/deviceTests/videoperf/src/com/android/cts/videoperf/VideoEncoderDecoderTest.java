@@ -131,11 +131,14 @@ public class VideoEncoderDecoderTest extends CtsAndroidTestCase {
     private void doTest(String mimeType, int w, int h, int numberRepeat) throws Exception {
         CodecInfo infoEnc = CodecInfo.getSupportedFormatInfo(mimeType, w, h, true);
         if (infoEnc == null) {
-            Log.i(TAG, "Codec " + mimeType + "with " + w + "," + h + " not supported");
+            Log.i(TAG, "Codec " + mimeType + " encoder with " + w + "," + h + " not supported");
             return;
         }
         CodecInfo infoDec = CodecInfo.getSupportedFormatInfo(mimeType, w, h, false);
-        assertNotNull(infoDec);
+        if (infoDec == null) {
+            Log.i(TAG, "Codec " + mimeType + " decoder with " + w + "," + h + " not supported");
+            return;
+        }
         mVideoWidth = w;
         mVideoHeight = h;
         initYUVPlane(w + YUV_PLANE_ADDITIONAL_LENGTH, h + YUV_PLANE_ADDITIONAL_LENGTH,
