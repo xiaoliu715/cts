@@ -325,6 +325,7 @@ public class VideoDecoderPerfTest extends MediaPlayerTestBase {
                720, 480, true /* isGoog */);
     }
 
+    @TimeoutReq(minutes = 20)
     public void testH2641280x0720Other() throws Exception {
         decode(VIDEO_AVC,
                R.raw.video_1280x720_mp4_h264_8192kbps_30fps_aac_stereo_128kbps_44100hz,
@@ -337,6 +338,7 @@ public class VideoDecoderPerfTest extends MediaPlayerTestBase {
                1280, 720, true /* isGoog */);
     }
 
+    @TimeoutReq(minutes = 20)
     public void testH2641920x1080Other() throws Exception {
         decode(VIDEO_AVC,
                R.raw.video_1920x1080_mp4_h264_20480kbps_30fps_aac_stereo_128kbps_44100hz,
@@ -385,6 +387,7 @@ public class VideoDecoderPerfTest extends MediaPlayerTestBase {
                1280, 720, true /* isGoog */);
     }
 
+    @TimeoutReq(minutes = 20)
     public void testVP81920x1080Other() throws Exception {
         decode(VIDEO_VP8,
                R.raw.video_1920x1080_webm_vp8_20480kbps_30fps_vorbis_stereo_128kbps_48000hz,
@@ -493,6 +496,7 @@ public class VideoDecoderPerfTest extends MediaPlayerTestBase {
                1280, 720, true /* isGoog */);
     }
 
+    @TimeoutReq(minutes = 20)
     public void testHEVC1920x1080Other() throws Exception {
         decode(VIDEO_HEVC,
                R.raw.video_1920x1080_mp4_hevc_10240kbps_30fps_aac_stereo_128kbps_44100hz,
