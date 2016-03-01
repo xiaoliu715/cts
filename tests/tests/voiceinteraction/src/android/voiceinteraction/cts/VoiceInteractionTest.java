@@ -43,6 +43,7 @@ public class VoiceInteractionTest extends ActivityInstrumentationTestCase2<TestS
     private TestResultsReceiver mReceiver;
     private Bundle mResults;
     private final CountDownLatch mLatch = new CountDownLatch(1);
+    private ActivityManager mActivityManager;
 
     public VoiceInteractionTest() {
         super(TestStartActivity.class);
@@ -55,7 +56,8 @@ public class VoiceInteractionTest extends ActivityInstrumentationTestCase2<TestS
         mContext = getInstrumentation().getTargetContext();
         mReceiver = new TestResultsReceiver();
         mContext.registerReceiver(mReceiver, new IntentFilter(Utils.BROADCAST_INTENT));
-    }
+        mActivityManager = (ActivityManager)getContext().getSystemService(Context.ACTIVITY_SERVICE);
+     }
 
     @Override
     protected void tearDown() throws Exception {
@@ -73,6 +75,11 @@ public class VoiceInteractionTest extends ActivityInstrumentationTestCase2<TestS
     }
 
     public void testAll() throws Exception {
+
+        if (mActivityManager.isLowRamDevice()) {
+            Log.i(TAG, "Low Ram device.");
+            return;
+        }
         if (!mLatch.await(TIMEOUT_MS, TimeUnit.MILLISECONDS)) {
             fail("Failed to receive broadcast in " + TIMEOUT_MS + "msec");
             return;
